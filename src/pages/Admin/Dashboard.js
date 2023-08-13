@@ -1,0 +1,2 @@
+/* The Dashboard component will have a list of all the users in the database (pet owners and administrators). Clicking on a user will display all the pets that the user owns, along with all of their profile details so that the administrators can contact the user. The Dashboard component will also have a list of all pets, and the admin will be able to go to the pet page and edit the pet's details.
+ */
