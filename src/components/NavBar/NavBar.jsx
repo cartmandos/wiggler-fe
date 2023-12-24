@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import {styled, alpha} from '@mui/material/styles'
+import React, { useState } from 'react';
+import { styled, alpha } from '@mui/material/styles';
 import {
   AppBar,
   Link,
@@ -15,16 +15,17 @@ import {
   MenuItem,
   InputBase,
   Badge,
-} from '@mui/material'
-import {LogoIcon} from 'components/Logo'
-import SearchIcon from '@mui/icons-material/Search'
-import NotificationsIcon from '@mui/icons-material/Notifications'
-import MenuIcon from '@mui/icons-material/Menu'
+} from '@mui/material';
+import { LogoIcon } from '@components/Logo';
+import SearchIcon from '@mui/icons-material/Search';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import MenuIcon from '@mui/icons-material/Menu';
+import { useAuth } from '@navigation/Auth/AuthProvider';
 
-const pages = []
-const settings = ['Profile', 'Dashboard', 'Logout']
+const pages = ['Pets'];
+const settings = ['Profile', 'Dashboard', 'Logout'];
 
-const Search = styled('div')(({theme}) => ({
+const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
@@ -38,9 +39,9 @@ const Search = styled('div')(({theme}) => ({
     marginLeft: theme.spacing(3),
     width: 'auto',
   },
-}))
+}));
 
-const SearchIconWrapper = styled('div')(({theme}) => ({
+const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
   height: '100%',
   position: 'absolute',
@@ -48,9 +49,9 @@ const SearchIconWrapper = styled('div')(({theme}) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-}))
+}));
 
-const StyledInputBase = styled(InputBase)(({theme}) => ({
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
@@ -62,32 +63,43 @@ const StyledInputBase = styled(InputBase)(({theme}) => ({
       width: '20ch',
     },
   },
-}))
+}));
 
-export default function NavBar() {
-  const [anchorElNav, setAnchorElNav] = useState(null)
-  const [anchorElUser, setAnchorElUser] = useState(null)
-
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget)
-  }
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget)
-  }
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null)
-  }
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null)
-  }
+const LogoutButton = () => {
+  const { signOut } = useAuth();
 
   return (
-    <AppBar sx={{boxShadow: 'none'}} position="fixed">
+    <Button onClick={signOut} variant="outlined" color="secondary">
+      Log-out
+    </Button>
+  );
+};
+
+export default function NavBar() {
+  const { currentUser } = useAuth();
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  return (
+    <AppBar sx={{ boxShadow: 'none' }} position="fixed">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -113,7 +125,7 @@ export default function NavBar() {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: {xs: 'block', md: 'none'},
+                display: { xs: 'block', md: 'none' },
               }}
             >
               {pages.map((page) => (
@@ -132,32 +144,37 @@ export default function NavBar() {
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{'aria-label': 'search'}}
-            />
+            <StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} />
           </Search>
-          <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
+
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Button
+              <Link
                 key={page}
-                onClick={handleCloseNavMenu}
-                sx={{my: 2, color: 'white', display: 'block'}}
+                href={`/${page.toLowerCase()}`}
+                underline="none"
+                color="inherit"
+                sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page}
-              </Button>
+              </Link>
             ))}
           </Box>
-          <Box sx={{flexGrow: 0}}>
-            <Box
-              sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}
-            >
-              <Typography variant="body2" sx={{px: 2}}>
-                Already have an account?
-              </Typography>
-              <Button variant="outlined" color="secondary">
-                Sign In
-              </Button>
+
+          <Box sx={{ flexGrow: 0 }}>
+            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+              {currentUser ? (
+                <LogoutButton />
+              ) : (
+                <>
+                  <Typography variant="body2" sx={{ px: 2 }}>
+                    Already have an account?
+                  </Typography>
+                  <Button variant="outlined" color="secondary">
+                    Sign In
+                  </Button>
+                </>
+              )}
             </Box>
 
             {/* <IconButton
@@ -200,5 +217,5 @@ export default function NavBar() {
         </Toolbar>
       </Container>
     </AppBar>
-  )
+  );
 }

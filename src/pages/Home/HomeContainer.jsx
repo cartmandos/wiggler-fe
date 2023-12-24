@@ -6,14 +6,16 @@
   /* Search button (can either be a link to search page or open modal of search component)*/
 
 import {useState} from 'react'
-import {LoginModal} from 'pages/Login'
-import {SignupModal} from 'pages/SignUp'
-import {SignModal} from 'pages/Sign/SignModal'
-import {Section} from 'components/layouts'
+import {LoginModal} from '@pages/Login'
+import {SignupModal} from '@pages/SignUp'
+import {SignModal} from '@pages/Sign/SignModal'
+import {Section} from '@components/layouts'
 import {HomeHero, HomeAbout, HomePets} from './sections'
-import {ModalProvider as ModelRouter, useModal} from 'pages/Sign/ModalProvider'
+import { ModalProvider as ModelRouter, useModal } from '@pages/Sign/ModalProvider'
+import {useAuth} from '@navigation/Auth/AuthProvider'
 
 export default function HomeContainer() {
+  const {currentUser} = useAuth()
   const [open, setOpen] = useState(false)
 
   const handleOpenModal = () => {
@@ -27,7 +29,11 @@ export default function HomeContainer() {
     return (
       <>
         <Section>
-          <HomeHero userName={null} LoginModal={true} onLogin={handleOpenModal} />
+          <HomeHero
+            userName={currentUser?.email}
+            LoginModal={true}
+            onLogin={handleOpenModal}
+          />
         </Section>
         <Section overlay="#ebe7e9">
           <HomeAbout />

@@ -1,4 +1,0 @@
-/* Search Page should have a search bar with the option to toggle between basic and advanced search. In basic search, the user can search for pets based on the type of animal. In advanced search, the user can search based on adoption status, height, weight, type, or name. 
- */
-
-/* The Search Page component will have a search bar that can toggle between basic and advanced search. Basic search will allow searching based on the type of animal, while advanced search will allow searching based on adoption status, height, weight, type, and name. The search results will be displayed in a list of animal card components that link to the pet page. */

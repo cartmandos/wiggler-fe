@@ -1,4 +1,4 @@
-import { ReactComponent as LoadingPage } from 'assets/spinners/loading-page.svg';
+import { ReactComponent as LoadingPage } from '@assets/spinners/loading-page.svg';
 
 export default function PageLoader() {
     return (

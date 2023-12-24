@@ -21,7 +21,7 @@ import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
 import styled from '@emotion/styled'
 import {Divider} from '@mui/material'
-import {ReactComponent as GoogleIcon} from 'assets/logos/google-icon.svg'
+import GoogleIcon from '@assets/logos/google-icon.svg?react'
 import IconButton from '@mui/material/IconButton'
 import Input from '@mui/material/Input'
 import FilledInput from '@mui/material/FilledInput'
@@ -32,8 +32,10 @@ import FormHelperText from '@mui/material/FormHelperText'
 import FormControl from '@mui/material/FormControl'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
-import {Logo} from 'components/Logo'
-import {useNavigateModal} from 'pages/Sign/ModalProvider'
+import {Logo} from '@components/Logo'
+import {useNavigateModal} from '@pages/Sign/ModalProvider'
+
+import {useAuth} from '@navigation/Auth/AuthProvider'
 
 const SignInHeader = () => {
   const navigateModal = useNavigateModal()
@@ -70,7 +72,10 @@ const SignInHeader = () => {
   )
 }
 
-function SignInForm() {
+function SignInForm({handleClose}) {
+  const {signIn,isLoading} = useAuth()
+  const [error, setError] = useState('');
+
   const inputLabelProps = {style: {fontSize: '0.75rem'}}
 
   const [showPassword, setShowPassword] = useState(false)
@@ -87,13 +92,21 @@ function SignInForm() {
     setIsError(value === 'errorMsg');
   }; */
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    const data = new FormData(event.currentTarget)
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    })
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const data = new FormData(e.currentTarget)
+      console.log('Login:', {
+        email: data.get('email'),
+        password: data.get('password'),
+      })
+
+      await signIn(data.get('email'), data.get('password'))
+      handleClose()
+    } catch (err) {
+      console.error(err)
+      setError(err?.message || 'Something went wrong. Please try again.');
+    }
   }
   return (
     <Box component="form" noValidate onSubmit={handleSubmit} sx={{mb: 2}}>
@@ -111,9 +124,11 @@ function SignInForm() {
               name="email"
               id="email"
               type="email"
-              autoComplete="email"
-            />
-            <FormHelperText id="email-error-text">
+              autoComplete="email"  
+              />
+            <FormHelperText 
+               id="email-error-text"
+               >
               Please enter an email address.
             </FormHelperText>
           </FormControl>
@@ -157,6 +172,14 @@ function SignInForm() {
             label="Remember me"
           />
         </Grid> */}
+
+        {/* Login Error Message */}
+        <Grid item xs={12}>
+          {!isLoading && error ? (
+               <Typography variant="body2" color="textSecondary">{error}</Typography>
+              ) : null}
+        </Grid>
+
         <Grid item align="end" xs={12} sx={{mt: 1}}>
           <Button
             align="end"
@@ -167,7 +190,7 @@ function SignInForm() {
               borderRadius: 20,
             }}
           >
-            Sign Up
+            Sign In
           </Button>
         </Grid>
       </Grid>
@@ -219,14 +242,14 @@ export function SocialButtons() {
   )
 }
 
-// REVIEW: Built-in Dialog component from MUI: https://mui.com/components/dialogs/
+// REVIEW: Built-in Dialog component from MUI: https://mui.com/@components/dialogs/
 // DialogTitle, DialogContent, DialogContentText, DialogActions
 export function LoginModal({open, onClose}) {
   return (
     <Dialog open={open} onClose={onClose}>
       <Box sx={{display: 'flex', flexDirection: 'column', px: 10, py: 6}}>
         <SignInHeader />
-        <SignInForm />
+        <SignInForm handleClose={onClose} />
         <Divider>Or</Divider>
         <SocialButtons />
       </Box>

@@ -1,5 +1,5 @@
-import {LoginModal} from 'pages/Login'
-import {SignupModal} from 'pages/SignUp'
+import {LoginModal} from '@pages/Login'
+import {SignupModal} from '@pages/SignUp'
 import {ModalProvider as ModalRouter, useModalPath} from './ModalProvider'
 
 const MODAL_ROOT_PATH = 'login'

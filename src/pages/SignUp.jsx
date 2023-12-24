@@ -22,9 +22,9 @@ import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
 import {Divider} from '@mui/material'
-import {useNavigateModal} from 'pages/Sign/ModalProvider'
-import {SocialButtons} from 'pages/Login'
-import {Logo} from 'components/Logo'
+import {useNavigateModal} from '@pages/Sign/ModalProvider'
+import {SocialButtons} from '@pages/Login'
+import {Logo} from '@components/Logo'
 
 const SignUpHeader = () => {
   return (

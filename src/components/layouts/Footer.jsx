@@ -1,6 +1,6 @@
 import { styled } from '@mui/material';
 import { Typography, Link, Box, Container } from '@mui/material';
-import { Logo } from 'components/Logo';
+import { Logo } from '@components/Logo';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';

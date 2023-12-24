@@ -37,8 +37,9 @@ import Container from '@mui/material/Container'
 import Button from '@mui/material/Button'
 import Image from 'mui-image'
 import Grid from '@mui/material/Grid'
-import homeImage from 'assets/images/home_01.png'
-import {useModal} from 'pages/Sign/ModalProvider'
+import homeImage from '@assets/images/home_01.png'
+import {useModal} from '@pages/Sign/ModalProvider'
+import {useNavigate} from 'react-router-dom'
 
 const LoginButton = ({LoginModal, onLogin}) => {
   return (
@@ -51,6 +52,22 @@ const LoginButton = ({LoginModal, onLogin}) => {
       href={!LoginModal ? '/login' : undefined}
     >
       Join
+    </Button>
+  )
+}
+
+const MyPetsButton = () => {
+  const navigate = useNavigate()
+
+  return (
+    <Button
+      sx={{borderRadius: 20}}
+      color="secondary"
+      size="large"
+      variant="contained"
+      onClick={() => navigate('/my-pets')}
+    >
+      My Pets
     </Button>
   )
 }
@@ -77,7 +94,11 @@ export default function HomeHero({userName, LoginModal, onLogin}) {
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <HeaderWelcome userName={userName} />
-          <LoginButton onLogin={onLogin} LoginModal={LoginModal} />
+          {userName ? (
+            <MyPetsButton />
+          ) : (
+            <LoginButton onLogin={onLogin} LoginModal={LoginModal} />
+          )}
         </Grid>
 
         <Grid item xs={12} sm={6}>

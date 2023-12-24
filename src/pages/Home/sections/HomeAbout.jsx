@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 import { Container, Box, Typography } from '@mui/material';
-import dogImage from 'assets/images/home_02.png';
+import dogImage from '@assets/images/home_02.png';
 
 const BackgroundContainer = styled(Container)(({ theme }) => ({
   backgroundImage: `url(${dogImage})`,
