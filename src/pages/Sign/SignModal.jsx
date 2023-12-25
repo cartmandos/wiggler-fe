@@ -1,15 +1,15 @@
-import {LoginModal} from '@pages/Login'
-import {SignupModal} from '@pages/SignUp'
-import {ModalProvider as ModalRouter, useModalPath} from './ModalProvider'
+import { LoginModal } from '@pages/Login';
+import { SignupModal } from '@pages/SignUp';
+import { ModalProvider as ModalRouter, useModalPath } from './ModalProvider';
 
-const MODAL_ROOT_PATH = 'login'
+const MODAL_ROOT_PATH = 'login';
 
-export function ModalRoute({path, children}) {
-  const currentPath = useModalPath()
-  return currentPath === path ? children : null
+export function ModalRoute({ path, children }) {
+  const currentPath = useModalPath();
+  return currentPath === path ? children : null;
 }
 
-export function SignModal({open, onClose, defaultPath = MODAL_ROOT_PATH}) {
+export function SignModal({ open, onClose, defaultPath = MODAL_ROOT_PATH }) {
   return (
     <ModalRouter defaultPath={defaultPath}>
       <ModalRoute path="signup">
@@ -19,5 +19,5 @@ export function SignModal({open, onClose, defaultPath = MODAL_ROOT_PATH}) {
         <LoginModal open={open} onClose={onClose} />
       </ModalRoute>
     </ModalRouter>
-  )
+  );
 }

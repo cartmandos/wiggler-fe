@@ -4,7 +4,7 @@ import { useAuthProvider } from './useAuthProvider';
 
 export function AuthProvider({ children }) {
   const auth = useAuthProvider();
-  
+
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
 }
 

@@ -1,3 +1,3 @@
 export default function Main({ children }) {
-    return <main role="main">{children}</main>;
+  return <main role="main">{children}</main>;
 }

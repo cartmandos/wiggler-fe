@@ -8,13 +8,13 @@ const BackgroundContainer = styled(Container)(({ theme }) => ({
   backgroundSize: '20%',
   backgroundPosition: '100%',
   [theme.breakpoints.down('sm')]: {
-    backgroundSize: '0'
-  }
+    backgroundSize: '0',
+  },
 }));
 
 export default function HomeAbout() {
   return (
-    <BackgroundContainer sx={{ py: 10, }} maxWidth="md">
+    <BackgroundContainer sx={{ py: 10 }} maxWidth="md">
       <Box sx={{ px: 3 }}>
         <Typography variant="h4" gutterBottom>
           <strong>Meet a new friend, change a life.</strong>
@@ -22,7 +22,7 @@ export default function HomeAbout() {
 
         <Typography
           sx={{
-            width: 'calc(2/3 * 100%)'
+            width: 'calc(2/3 * 100%)',
           }}
           variant="h5"
         >

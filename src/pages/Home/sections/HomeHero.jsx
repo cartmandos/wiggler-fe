@@ -31,20 +31,20 @@ Has access to navigate to profile settings
   will open a modal with the search component. The user will also have access to
   navigate to their profile settings and to their My Pets Page.
  */
-import Typography from '@mui/material/Typography'
-import Box from '@mui/material/Box'
-import Container from '@mui/material/Container'
-import Button from '@mui/material/Button'
-import Image from 'mui-image'
-import Grid from '@mui/material/Grid'
-import homeImage from '@assets/images/home_01.png'
-import {useModal} from '@pages/Sign/ModalProvider'
-import {useNavigate} from 'react-router-dom'
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
+import Image from 'mui-image';
+import Grid from '@mui/material/Grid';
+import homeImage from '@assets/images/home_01.png';
+import { useModal } from '@pages/Sign/ModalProvider';
+import { useNavigate } from 'react-router-dom';
 
-const LoginButton = ({LoginModal, onLogin}) => {
+const LoginButton = ({ LoginModal, onLogin }) => {
   return (
     <Button
-      sx={{borderRadius: 20}}
+      sx={{ borderRadius: 20 }}
       color="secondary"
       size="large"
       variant="contained"
@@ -53,15 +53,15 @@ const LoginButton = ({LoginModal, onLogin}) => {
     >
       Join
     </Button>
-  )
-}
+  );
+};
 
 const MyPetsButton = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <Button
-      sx={{borderRadius: 20}}
+      sx={{ borderRadius: 20 }}
       color="secondary"
       size="large"
       variant="contained"
@@ -69,10 +69,10 @@ const MyPetsButton = () => {
     >
       My Pets
     </Button>
-  )
-}
+  );
+};
 
-const HeaderWelcome = ({userName}) => {
+const HeaderWelcome = ({ userName }) => {
   return (
     <Box>
       <Typography variant="h4" component="h1" gutterBottom>
@@ -85,24 +85,20 @@ const HeaderWelcome = ({userName}) => {
         {userName ? 'WE MISSED YOU!' : "LET'S BE FRIENDS?"}
       </Typography>
     </Box>
-  )
-}
+  );
+};
 
-export default function HomeHero({userName, LoginModal, onLogin}) {
+export default function HomeHero({ userName, LoginModal, onLogin }) {
   return (
-    <Container sx={{mt: 15, mb: 2}} maxWidth="sm">
+    <Container sx={{ mt: 15, mb: 2 }} maxWidth="sm">
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <HeaderWelcome userName={userName} />
-          {userName ? (
-            <MyPetsButton />
-          ) : (
-            <LoginButton onLogin={onLogin} LoginModal={LoginModal} />
-          )}
+          {userName ? <MyPetsButton /> : <LoginButton onLogin={onLogin} LoginModal={LoginModal} />}
         </Grid>
 
         <Grid item xs={12} sm={6}>
-          <Box sx={{position: 'relative', height: '100%'}}>
+          <Box sx={{ position: 'relative', height: '100%' }}>
             <Image
               src={homeImage}
               height="100%"
@@ -116,11 +112,11 @@ export default function HomeHero({userName, LoginModal, onLogin}) {
               distance="100px"
               shiftDuration={900}
               bgColor="inherit"
-              sx={{position: 'absolute', bottom: 0, right: 0}}
+              sx={{ position: 'absolute', bottom: 0, right: 0 }}
             />
           </Box>
         </Grid>
       </Grid>
     </Container>
-  )
+  );
 }
