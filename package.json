@@ -2,19 +2,25 @@
   "name": "vite-project",
   "private": true,
   "version": "0.1.0",
+  "author": "Oren Damien Shomrai <damien.shomrai@pm.me>",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cartmandos/wiggler-fe.git"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "preview": "vite preview",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "format": "prettier  --write **/*.{js,jsx}"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@fontsource/roboto": "^5.0.8",
-    "@mui/icons-material": "^5.15.1",
-    "@mui/material": "^5.15.1",
+    "@mui/icons-material": "^5.15.2",
+    "@mui/material": "^5.15.2",
     "axios": "^1.6.2",
     "mui-image": "^1.0.7",
     "react": "^18.2.0",
