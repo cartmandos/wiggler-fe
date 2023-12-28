@@ -1,41 +1,30 @@
 /* 	Login Component (inside a modal):
 Email address 
 Password  */
-import { useContext, useState } from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-//DIALOG
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import styled from '@emotion/styled';
-import { Divider } from '@mui/material';
-import GoogleIcon from '@assets/logos/google-icon.svg?react';
-import IconButton from '@mui/material/IconButton';
-import Input from '@mui/material/Input';
-import FilledInput from '@mui/material/FilledInput';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormHelperText from '@mui/material/FormHelperText';
-import FormControl from '@mui/material/FormControl';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { Logo } from '@components/Logo';
-import { useNavigateModal } from '@pages/Sign/ModalProvider';
+import { useState } from 'react';
+import { Button, Container, Grid, Box, Typography, Link } from '@mui/material';
+// import {Avatar,TextField,FormControlLabel,Checkbox} from '@mui/material';
+// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
-import { useAuth } from '@navigation/Auth/AuthProvider';
+//DIALOG
+import {
+  Dialog,
+  Divider,
+  IconButton,
+  Input,
+  InputLabel,
+  InputAdornment,
+  FormHelperText,
+  FormControl,
+} from '@mui/material';
+// import {DialogActions,DialogContent,DialogContentText,DialogTitle,FilledInput,OutlinedInput} from '@mui/material/DialogActions';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+
+import { useAuth } from '@lib/auth';
+
+import { useNavigateModal } from '@pages/Sign/ModalProvider';
+import SocialButtons from '@pages/Sign/SocialButtons';
+import { Logo } from '@components/Logo';
 
 const SignInHeader = () => {
   const navigateModal = useNavigateModal();
@@ -193,28 +182,6 @@ export default function SignIn() {
         <SignInForm />
       </Box>
     </Container>
-  );
-}
-
-const GoogleSignInButton = styled(Button)({
-  textTransform: 'none',
-  paddingTop: '1rem',
-  paddingBottom: '1rem',
-});
-export function SocialButtons() {
-  return (
-    <GoogleSignInButton
-      /*             type="submit"
-       */
-      startIcon={<GoogleIcon sx={{ verticalAlign: 'middle', height: '18px', width: '18px' }} />}
-      fullWidth
-      size="large"
-      variant="contained"
-      color="primary"
-      sx={{ borderRadius: 20, mt: 3, mb: 2 }}
-    >
-      Continue with Google
-    </GoogleSignInButton>
   );
 }
 

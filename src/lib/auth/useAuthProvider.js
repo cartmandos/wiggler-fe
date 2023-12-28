@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useSessionStorage } from '@hooks/useSessionStorage';
-import { login, logout } from '@lib/api';
+import { login, logout } from '@lib/api/auth';
 
 export function useAuthProvider() {
   const [isLoading, setIsLoading] = useState(true);
-  const [currentUser, setCurrentUser] = useSessionStorage('userdetails', null);
   const [isAuth, setIsAuth] = useState(false);
+
+  const [currentUser, setCurrentUser, revokeCurrentUser] = useSessionStorage('userdetails', null);
 
   useEffect(() => {
     const unsubscribe = () => {
-      //...
+      console.log('currentUser => ', currentUser);
       if (currentUser) {
-        setIsAuth(true);
+        authenticate();
       }
       setIsLoading(false);
     };
@@ -19,15 +20,19 @@ export function useAuthProvider() {
     unsubscribe();
   }, []);
 
+  const authenticate = () => {
+    currentUser && setIsAuth(currentUser?.isAuthenticated === true);
+  };
+
   const signIn = async (email, password) => {
     try {
       const res = await login({ email, password });
-      const user = res.data;
-      setCurrentUser(user);
-      setIsAuth(true);
+
+      res && res.data && setCurrentUser({ ...res.data, isAuthenticated: true });
+      authenticate();
     } catch (error) {
       if (error.response) {
-        throw Error(error.response.data.message);
+        throw Error(error.response.data?.message);
       }
       if (error.request) {
         throw Error('No response from server');
@@ -38,28 +43,21 @@ export function useAuthProvider() {
   };
 
   const signOut = async () => {
-    revokeLoggedInSession();
-    setCurrentUser(null);
-    setIsAuth(false);
+    try {
+      await logout();
+
+      revokeCurrentUser();
+      authenticate();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return {
     isLoading,
-    currentUser,
     isAuth,
+    currentUser,
     signIn,
     signOut,
   };
-}
-
-export function setLoggedInSession(userDetails) {
-  sessionStorage.setItem('userdetails', JSON.stringify(userDetails));
-}
-
-export function revokeLoggedInSession() {
-  sessionStorage.removeItem('userdetails');
-}
-
-export function getLoggedInSession() {
-  return JSON.parse(sessionStorage.getItem('userdetails'));
 }

@@ -3,27 +3,22 @@ Should take an email address
 Password (twice to make sure passwords match)
 First and last name
 Phone number */
-import { useState } from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-//DIALOG
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import { Divider } from '@mui/material';
-import { useNavigateModal } from '@pages/Sign/ModalProvider';
-import { SocialButtons } from '@pages/Login';
+
+import {
+  Button,
+  TextField,
+  FormControlLabel,
+  Checkbox,
+  Link,
+  Grid,
+  Box,
+  Typography,
+} from '@mui/material';
+// DIALOG
+import { Divider, Dialog } from '@mui/material';
+
+import { useNavigateModal } from '../ModalProvider';
+import SocialButtons from '../SocialButtons';
 import { Logo } from '@components/Logo';
 
 const SignUpHeader = () => {
@@ -59,9 +54,11 @@ export default function SignUp() {
     <>
       <Typography variant="body1" color="formMain">
         Sign up with mail&nbsp;
-        {/*   <Button variant="text" onClick={() => navigateModal('signup')} sx={{color:"#000"}}>
+        {/*   
+        <Button variant="text" onClick={() => navigateModal('signup')} sx={{color:"#000"}}>
             Create an Account
-          </Button> */}
+          </Button> 
+          */}
         <Link onClick={() => navigateModal('login')} href="#" variant="body2" color="textSecondary">
           Already have an account?
         </Link>

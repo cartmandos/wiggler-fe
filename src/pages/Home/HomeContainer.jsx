@@ -7,12 +7,12 @@
 
 import { useState } from 'react';
 import { LoginModal } from '@pages/Login';
-import { SignupModal } from '@pages/SignUp';
+import { SignupModal } from '@pages/Sign/SignUp';
 import { SignModal } from '@pages/Sign/SignModal';
 import { Section } from '@components/layouts';
 import { HomeHero, HomeAbout, HomePets } from './sections';
 import { ModalProvider as ModelRouter, useModal } from '@pages/Sign/ModalProvider';
-import { useAuth } from '@navigation/Auth/AuthProvider';
+import { useAuth } from '@lib/auth';
 
 export default function HomeContainer() {
   const { currentUser } = useAuth();

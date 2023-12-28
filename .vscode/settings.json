@@ -4,5 +4,5 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
-  "cSpell.words": ["fontsource", "roboto", "svgr"]
+  "cSpell.words": ["fontsource", "roboto", "SIGNUP", "svgr", "userdetails"]
 }

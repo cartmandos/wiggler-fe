@@ -1,7 +1,7 @@
-import { usePets } from '@store/PetsProvider';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@mui/material';
 
+import { usePets } from '@store/PetsProvider';
 import dogImage from '@assets/images/pets/dog_01.jpg';
 
 const PetCard = ({ pet }) => {

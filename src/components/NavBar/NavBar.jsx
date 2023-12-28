@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import {
   AppBar,
@@ -9,18 +9,20 @@ import {
   Typography,
   Menu,
   Container,
-  Avatar,
   Button,
-  Tooltip,
   MenuItem,
   InputBase,
-  Badge,
+  // Avatar,
+  // Tooltip,
+  // Badge,
 } from '@mui/material';
-import { LogoIcon } from '@components/Logo';
-import SearchIcon from '@mui/icons-material/Search';
+
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useAuth } from '@navigation/Auth/AuthProvider';
+
+import { useAuth } from '@lib/auth';
+import { LogoIcon } from '@components/Logo';
 
 const pages = ['Pets'];
 const settings = ['Profile', 'Dashboard', 'Logout'];

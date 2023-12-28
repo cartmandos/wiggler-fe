@@ -1,10 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Typography from '@mui/material/Typography';
-import { ROOT } from './CONSTANTS';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+
+import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { Box } from '@mui/material';
+
+import { ROOT } from '@lib/routes';
 import notFoundImage from '@assets/images/404_01.png';
 
 const Code = styled('code')(({ theme }) => ({
@@ -20,7 +19,7 @@ const BoxWrapper = styled(Box)({
   height: '92vh',
 });
 
-export const NotFound = () => {
+export default function NotFound() {
   let location = useLocation();
 
   return (
@@ -45,4 +44,4 @@ export const NotFound = () => {
       </Box>
     </BoxWrapper>
   );
-};
+}

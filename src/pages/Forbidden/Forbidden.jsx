@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 /* import { useHistory, useLocation } from 'react-router-dom';
- */ import { useAuth } from './Auth/AuthProvider';
+ */ import { useAuth } from '@lib/auth';
 /* import { LinkRoute } from '@components/LinkRoute';
- */ import { ROOT } from '@navigation/CONSTANTS';
+ */ import { ROOT } from '@lib/routes';
 import { Button, Typography } from '@mui/material/';
 /* import LoadingButton from '@components/LoadingButton';
  */
-export default function NotAuthorized() {
+export default function Forbidden() {
   /*   let history = useHistory();
   let location = useLocation();
   let auth = useAuth();

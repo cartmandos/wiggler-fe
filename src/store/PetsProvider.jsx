@@ -1,6 +1,6 @@
-import React, { useState, useEffect, createContext, useContext } from 'react';
-import { getPets, adoptPet, delPet } from '@lib/api/pets';
-import { getMyAdoptions } from '@lib/api/adoptions';
+import { useState, useEffect, createContext, useContext } from 'react';
+import { getPets, adoptPet, removePet } from '@lib/api/pets';
+import { getUserAdoptions } from '@lib/api/users';
 
 const PetsContext = createContext();
 
@@ -22,7 +22,7 @@ const PetsProvider = ({ children }) => {
 
   const fetchMyAdoptedPets = async () => {
     try {
-      const res = await getMyAdoptions();
+      const res = await getUserAdoptions();
       console.log(res.adoptions);
 
       console.log(res.pagination);
@@ -57,7 +57,7 @@ const PetsProvider = ({ children }) => {
 
   const deletePet = async (petId) => {
     try {
-      const res = await delPet(petId);
+      const res = await removePet(petId);
       const newPetsList = pets.filter((pet) => pet.id !== petId);
       setPets(newPetsList);
     } catch (error) {
