@@ -24,7 +24,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useAuth } from '@lib/auth';
 import { LogoIcon } from '@components/Logo';
 
-const pages = ['Pets'];
+const pages = ['Pets', 'My-Pets'];
 const settings = ['Profile', 'Dashboard', 'Logout'];
 
 const Search = styled('div')(({ theme }) => ({
@@ -112,6 +112,7 @@ export default function NavBar() {
             >
               <MenuIcon />
             </IconButton>
+            
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}

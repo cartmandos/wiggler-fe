@@ -20,7 +20,7 @@ export async function getPet(petId) {
   return res.data;
 }
 
-export async function adPet(petData) {
+export async function addPet(petData) {
   const res = await apiClient.post(`${PETS_API_PATH}`, petData);
 
   return res.data;

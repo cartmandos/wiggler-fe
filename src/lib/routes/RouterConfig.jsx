@@ -7,6 +7,7 @@ import SignUpPage from '@pages/Sign/SignUp';
 import PetsPage from '@pages/Pets';
 import PetDetailsPage from '@pages/PetDetails';
 import MyPetsPage from '@pages/MyPets';
+import SavedPets from '@pages/SavedPets';
 import NotFoundPage from '@pages/NotFound';
 import ForbiddenPage from '@pages/Forbidden';
 
@@ -23,7 +24,9 @@ export const RouterConfig = () => {
 
       <Route path="/pets" element={<PrivateRoute element={<PetsPage />} />} />
       <Route path="/pets/:id" element={<PetDetailsPage />} />
+
       <Route path="/my-pets" element={<MyPetsPage />} />
+      <Route path="/saved-pets" element={<SavedPets />} />
 
       <Route path={FORBIDDEN} element={<ForbiddenPage />} />
       <Route path="*" element={<NotFoundPage />} />

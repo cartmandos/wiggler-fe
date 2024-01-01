@@ -4,7 +4,7 @@ const USERS_API_PATH = '/users';
 
 const PROFILE_ENDPOINT = 'profile';
 const ADOPTIONS_ENDPOINT = 'adoptions';
-const SAVED_PETS_ENDPOINT = 'saved';
+const SAVED_PETS_ENDPOINT = 'saved-pets';
 
 export async function getUsers() {
   const res = await apiClient.get(`${USERS_API_PATH}`);

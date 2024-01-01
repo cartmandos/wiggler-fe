@@ -1,20 +1,20 @@
 import { useEffect } from 'react';
-// import { Grid, Container } from '@mui/material';
+import { Grid, Container } from '@mui/material';
 
-import { useMyPets } from '@hooks/useMyPets';
+import { useSavedPets } from '@hooks/useSavedPets';
 // import PetCard from '../PetCard';
 import PetsContainer from '../PetsContainer';
 
-export default function MyPets() {
-  const { myPets, fetchMyPets } = useMyPets();
+export default function SavedPets() {
+  const { savedPets, fetchSavedPets } = useSavedPets();
 
   useEffect(() => {
-    fetchMyPets();
+    fetchSavedPets();
   }, []);
 
   return (
-    <div className="Adoptions">
-      <PetsContainer pets={myPets} />
+    <div className="SavedPets">
+      <PetsContainer pets={savedPets} />
     </div>
   );
 }

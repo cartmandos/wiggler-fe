@@ -1,9 +1,10 @@
-import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from '@styles/ThemeProvider';
-
-import { RouterConfig } from '@lib/routes';
 import { AuthProvider } from '@lib/auth';
 import { PetsProvider } from '@store/PetsProvider';
+import { UserProvider } from '@store/UserProvider';
+
+import { Router } from '@lib/routes';
+
 import { Main, Footer } from '@components/layouts';
 import NavBar from '@components/NavBar';
 
@@ -14,13 +15,13 @@ export default function App() {
     <ThemeProvider>
       <AuthProvider>
         <PetsProvider>
-          <NavBar />
-          <Main>
-            <BrowserRouter>
-              <RouterConfig />
-            </BrowserRouter>
-          </Main>
-          <Footer />
+          <UserProvider>
+            <NavBar />
+            <Main>
+              <Router />
+            </Main>
+            <Footer />
+          </UserProvider>
         </PetsProvider>
       </AuthProvider>
     </ThemeProvider>

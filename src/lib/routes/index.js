@@ -1,3 +1,3 @@
-export { RouterConfig } from './RouterConfig';
+export { default as Router } from './Router';
 
 export * from './constants';

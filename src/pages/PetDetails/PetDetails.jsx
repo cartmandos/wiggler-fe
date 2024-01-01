@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { Card, CardContent, Container } from '@mui/material';
+import { Card, CardContent, Container, CardMedia, Typography } from '@mui/material';
 
 import { getPet } from '@lib/api/pets';
+
+import dogImage from '@assets/images/pets/dog_01.jpg';
 
 export default function PetDetails() {
   const [pet, setPet] = useState({});
@@ -24,7 +26,7 @@ export default function PetDetails() {
     fetchPet();
   }, []);
 
-  //pet has the following properties:
+  //pet props:
   // "status": "Available",
   // "type": "Cat",
   // "name": "Buddy",
@@ -48,15 +50,43 @@ export default function PetDetails() {
   return (
     //   show all pet details
     <Container>
-      <Card sx={{ maxWidth: 180 }} className="PetsContainer">
-        {' '}
-        <h1>{pet.name}</h1>
+      <Card sx={{ maxWidth: 360 }} className="PetsContainer">
+        <CardMedia component="img" alt={pet?.name} height="100%" width="100%" image={dogImage} />
         <CardContent>
-          <div className="PetDetails">
-            <div>{pet.type}</div>
-            <div>{pet.breed}</div>
-            <div>{pet.color}</div>
-            <div>{pet.age}</div>
+          <div className="PetDetails__basic">
+            <Typography variant="h5" component="div">
+              {pet.name}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {pet.breed}
+            </Typography>
+          </div>
+
+          <div className="PetDetails__age">
+            <Typography variant="body1" component="div">
+              Age
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {pet.age}
+            </Typography>
+          </div>
+
+          <div className="PetDetails__sex">
+            <Typography variant="body1" component="div">
+              Sex
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {pet.gender}
+            </Typography>
+          </div>
+
+          <div className="PetDetails__bio">
+            <Typography variant="body1" component="div">
+              Bio
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {pet.description}
+            </Typography>
           </div>
         </CardContent>
       </Card>
@@ -64,15 +94,8 @@ export default function PetDetails() {
   );
 }
 
-/* The Pet Page should display all the pet's details, 
-including its type, name, adoption status, picture, 
-height, weight, color, bio, hypoallergenic, dietary restrictions, and breed. 
-If the user is the owner, 
-a button to return the pet to the adoption center should be available, 
-and if not, the user should see a button to adopt or foster the pet. 
-There should also be an additional button to save the pet for later (or unsave if already saved). */
-
-/* The Pet Page component will display all the pet details of a specific pet. 
+/* 
+The Pet Page component will display all the pet details of a specific pet. 
 These details will include the pet's type (dog, cat), 
 name, adoption status, picture, height, weight, color, 
 bio, hypoallergenic (yes/no), dietary restrictions, 
@@ -81,4 +104,5 @@ There will be a button for the owner of the pet to
 return the pet to the adoption center (if they are fostering the pet or adopted it).
  If the person is not the owner, they will see a button to adopt and a button to foster.
   If they are already fostering, they will see a button to adopt.
-   There will also be an additional button to save for later (or unsave if already saved). */
+   There will also be an additional button to save for later (or unsave if already saved). 
+   */

@@ -16,6 +16,7 @@ export default defineConfig({
       { find: '@lib', replacement: '/src/lib' },
       { find: '@hooks', replacement: '/src/hooks' },
       { find: '@assets', replacement: '/src/assets' },
+      { find: '@utils', replacement: '/src/utils' },
     ],
   },
 });

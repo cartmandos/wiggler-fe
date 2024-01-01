@@ -5,6 +5,7 @@ const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
 const API_PATH = import.meta.env.VITE_API_PATH;
 const APP_API_URL = `${API_BASE_URL}/${API_PATH}`;
 
+// Defaults
 axios.defaults.baseURL = APP_API_URL;
 axios.defaults.withCredentials = true;
 
@@ -13,7 +14,7 @@ axios.defaults.headers.common['Accept'] = 'application/json';
 
 const apiClient = axios.create();
 
-// INTERCEPTORS
+// Interceptors
 
 /**
  * Unauthorized (401) Request Interceptor
@@ -44,5 +45,7 @@ apiClient.interceptors.response.use(
     return Promise.reject(error);
   },
 );
+
+// Methods
 
 export { apiClient };
